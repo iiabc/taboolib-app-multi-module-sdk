@@ -1,13 +1,12 @@
 @file:Suppress("PropertyName", "SpellCheckingInspection")
 
-import io.izzel.taboolib.gradle.APPLICATION
-import io.izzel.taboolib.gradle.CONFIGURATION
+import io.izzel.taboolib.gradle.App
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    id("io.izzel.taboolib") version "2.0.11"
-    kotlin("jvm") version "1.9.21"
+    id("io.izzel.taboolib") version "2.0.19"
+    kotlin("jvm") version "1.9.24"
 }
 
 subprojects {
@@ -18,14 +17,16 @@ subprojects {
     // TabooLib 配置
     taboolib {
         env {
-            install(APPLICATION, CONFIGURATION)
+            isDebug = false
+            install(App)
             // 依赖下载目录
             fileLibs = "libraries"
             // 资源下载目录
             fileAssets = "assets"
         }
         version {
-            taboolib = "6.1.2-beta12"
+            taboolib = "6.2.0-beta33"
+            coroutines = "1.7.3"
             skipKotlinRelocate = true
             skipTabooLibRelocate = true
         }
@@ -41,7 +42,7 @@ subprojects {
 
     // 全局依赖
     dependencies {
-        taboo("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.21") // 添加依赖，要用taboo
+        taboo("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.24") // 添加依赖，要用taboo
         testImplementation(kotlin("test"))
         taboo(kotlin("reflect"))
     }
